@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
                           all available_locales.  For obvious reasons, this gem is intended to be used for development 
                           purposes only to aid in UI and internationalization/localization testing.
                         }
-  spec.homepage      = 'http://downey.io'
+  spec.homepage      = 'https://github.com/tcdowney/i18n-bamboo'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
