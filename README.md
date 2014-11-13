@@ -1,10 +1,54 @@
-# I18n::Bamboo
+I18n::Bamboo
+------------
+
+[![Build Status](https://travis-ci.org/tcdowney/i18n-bamboo.svg?branch=master)](https://travis-ci.org/tcdowney/i18n-bamboo)
 
 Consider the noble bamboo.  This peculiar member of the Poaceae family has been known to grow to extraordinary lengths without yielding to (mostly) any obstacles.
 
 Not unlike bamboo, the i18n translations of a Rails app will continue to grow.  As a tenacious stalk of bamboo breaks through a slab of sidewalk, so too will long translations break a UI.
 
 I18n:Bamboo monkey patches the Rails I18n module and will force all calls to I18n.translate (I18n.t) and I18n.localize (I18n.l) to return the longest translated or localized value from all available locales.  For obvious reasons (monkey patching :cold_sweat:), this gem is intended to be used for development purposes only to aid in UI and internationalization/localization testing.
+
+## tl;dr
+
+This gem monkey patches the I18n module to force I18n.translate and I18n.localize to always return the longest translation, regardless of current locale.
+
+I18n-bamboo will help you find UI pain points and help you uncover some of the less responsive parts of your application.
+
+## Example Usage
+
+Consider the following hypothetical locale files:
+```yml
+# en.yml
+en:
+    car: "Car"
+    dog: "Dog"
+    bird: "Feathered Friend"
+
+# es.yml
+es:
+    car: "Coche"
+    dog: "Perro"
+    bird: "Pajaro"
+
+# de.yml
+de:
+    car: "Automobil"
+    dog: "Hund"
+    bird: "Vogel"
+```
+
+Calls to the new monkey patched translation helper would return the following:
+
+```ruby
+# Assume that I18n.default_locale = :en
+I18n.t('car')
+# => "Automobil"
+I18n.t('dog')
+# => "Perro"
+I18n.t('bird')
+# => "Feathered Friend"
+```
 
 ## Installation
 
@@ -20,7 +64,7 @@ Or install it yourself as:
 
     $ gem install i18n-bamboo
 
-## Usage
+## Configuration
 ### Automatic
 Simply add the following line to your `config/environments/development.rb` file:
 ```ruby
