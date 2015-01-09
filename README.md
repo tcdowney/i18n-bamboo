@@ -50,6 +50,16 @@ I18n.t('bird')
 # => "Feathered Friend"
 ```
 
+Additionally, you can temporarily override this new behavior of the `translate` and `localize` methods by passing in the `:force_default_behavior` option.
+
+```ruby
+# Assume that I18n.default_locale = :en
+I18n.t('car', force_default_behavior: true)
+# => "Car"
+I18n.t('car', force_default_behavior: false)
+# => "Automobil"
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
